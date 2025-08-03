@@ -20,7 +20,8 @@
     "lcov",
     "html"
   ],
-  "moduleNameMapping": {
+  "setupFilesAfterEnv": ["<rootDir>/tests/setup.ts"],
+  "moduleNameMapper": {
     "^@/(.*)$": "<rootDir>/src/$1"
   }
 }

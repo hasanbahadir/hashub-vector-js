@@ -12,7 +12,7 @@ export class HashubVectorError extends Error {
     this.code = code;
     this.status = status;
     this.details = details;
-    
+
     // Maintain proper stack trace for where our error was thrown
     if ((Error as any).captureStackTrace) {
       (Error as any).captureStackTrace(this, HashubVectorError);

@@ -1,26 +1,26 @@
 /**
  * Hashub Vector SDK for TypeScript/JavaScript
- * 
+ *
  * Official SDK for Hashub Vector API providing high-quality multilingual text embeddings
  * with exceptional Turkish language support.
- * 
+ *
  * @example
  * ```typescript
  * import { HashubVector } from 'hashub-vector';
- * 
+ *
  * const client = new HashubVector({
  *   apiKey: 'your-api-key'
  * });
- * 
+ *
  * // Single embedding
  * const response = await client.vectorize({
  *   text: 'Merhaba dünya!',
  *   model: 'gte_base'
  * });
- * 
+ *
  * console.log(response.vector);
  * ```
- * 
+ *
  * @packageDocumentation
  */
 

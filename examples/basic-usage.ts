@@ -15,7 +15,7 @@ import { HashubVector, AuthenticationError, RateLimitError, QuotaExceededError }
 
 // Initialize client
 const client = new HashubVector({
-  apiKey: process.env.HASHUB_API_KEY || 'hh_live_62e6dbc416cf7760d22db26fc5e0d31c',
+  apiKey: process.env.HASHUB_API_KEY || 'your-api-key-here',
   timeout: 30000,
   maxRetries: 3
 });

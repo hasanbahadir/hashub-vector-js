@@ -17,12 +17,12 @@ export interface HashubVectorConfig {
 /**
  * Available embedding models
  */
-export type EmbeddingModel = 
-  | 'gte_base'     // 768D, 8192 tokens - Best for long documents, RAG
-  | 'nomic_base'   // 768D, 2048 tokens - General purpose
-  | 'e5_base'      // 768D, 512 tokens - Excellent for search, retrieval
-  | 'mpnet_base'   // 768D, 512 tokens - Q&A, similarity
-  | 'e5_small'     // 384D, 512 tokens - High speed, large volumes
+export type EmbeddingModel =
+  | 'gte_base' // 768D, 8192 tokens - Best for long documents, RAG
+  | 'nomic_base' // 768D, 2048 tokens - General purpose
+  | 'e5_base' // 768D, 512 tokens - Excellent for search, retrieval
+  | 'mpnet_base' // 768D, 512 tokens - Q&A, similarity
+  | 'e5_small' // 384D, 512 tokens - High speed, large volumes
   | 'minilm_base'; // 384D, 512 tokens - Ultra-fast
 
 /**

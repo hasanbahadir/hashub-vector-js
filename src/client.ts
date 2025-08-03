@@ -26,23 +26,23 @@ import {
 
 /**
  * Hashub Vector SDK Client for TypeScript/JavaScript
- * 
+ *
  * Provides high-quality multilingual text embeddings with exceptional Turkish language support.
- * 
+ *
  * @example
  * ```typescript
  * import { HashubVector } from 'hashub-vector';
- * 
+ *
  * const client = new HashubVector({
  *   apiKey: 'your-api-key'
  * });
- * 
+ *
  * // Single embedding
  * const response = await client.vectorize({
  *   text: 'Merhaba dünya!',
  *   model: 'gte_base'
  * });
- * 
+ *
  * console.log(response.vector); // [0.1, -0.2, ...]
  * ```
  */
@@ -52,7 +52,7 @@ export class HashubVector {
 
   /**
    * Create a new Hashub Vector client
-   * 
+   *
    * @param config - Configuration options
    */
   constructor(config: HashubVectorConfig) {
@@ -68,7 +68,7 @@ export class HashubVector {
       baseURL: this.config.baseUrl,
       timeout: this.config.timeout,
       headers: {
-        'Authorization': `Bearer ${this.config.apiKey}`,
+        Authorization: `Bearer ${this.config.apiKey}`,
         'Content-Type': 'application/json',
         'User-Agent': 'hashub-vector-js/1.0.0',
         ...this.config.headers,
@@ -84,17 +84,17 @@ export class HashubVector {
 
   /**
    * Generate embedding for a single text
-   * 
+   *
    * @param request - Vectorization request
    * @returns Promise<VectorizeResponse>
-   * 
+   *
    * @example
    * ```typescript
    * const response = await client.vectorize({
    *   text: 'Artificial intelligence is transforming the world',
    *   model: 'gte_base'
    * });
-   * 
+   *
    * console.log(`Vector dimension: ${response.dimension}`);
    * console.log(`Tokens used: ${response.tokens}`);
    * ```
@@ -112,10 +112,10 @@ export class HashubVector {
 
   /**
    * Generate embeddings for multiple texts (batch processing)
-   * 
+   *
    * @param request - Batch vectorization request
    * @returns Promise<VectorizeBatchResponse>
-   * 
+   *
    * @example
    * ```typescript
    * const response = await client.vectorizeBatch({
@@ -126,7 +126,7 @@ export class HashubVector {
    *   ],
    *   model: 'gte_base'
    * });
-   * 
+   *
    * console.log(`Processed ${response.count} texts`);
    * console.log(`Total tokens: ${response.totalTokens}`);
    * ```
@@ -144,10 +144,10 @@ export class HashubVector {
 
   /**
    * Calculate cosine similarity between two texts
-   * 
+   *
    * @param request - Similarity calculation request
    * @returns Promise<SimilarityResponse>
-   * 
+   *
    * @example
    * ```typescript
    * const response = await client.similarity({
@@ -155,7 +155,7 @@ export class HashubVector {
    *   text2: 'Makine öğrenmesi',
    *   model: 'gte_base'
    * });
-   * 
+   *
    * console.log(`Similarity: ${response.similarity.toFixed(3)}`);
    * ```
    */
@@ -171,13 +171,13 @@ export class HashubVector {
 
   /**
    * Get information about available models
-   * 
+   *
    * @returns Promise<ModelInfo[]>
-   * 
+   *
    * @example
    * ```typescript
    * const models = await client.getModels();
-   * 
+   *
    * for (const model of models) {
    *   console.log(`${model.alias}: ${model.description}`);
    *   console.log(`  Dimension: ${model.dimension}`);
@@ -193,13 +193,13 @@ export class HashubVector {
 
   /**
    * Get current usage statistics
-   * 
+   *
    * @returns Promise<UsageStats>
-   * 
+   *
    * @example
    * ```typescript
    * const usage = await client.getUsage();
-   * 
+   *
    * console.log(`Tokens used: ${usage.tokensUsed.toLocaleString()}`);
    * console.log(`Usage: ${usage.tokensPercentageUsed.toFixed(1)}%`);
    * console.log(`Remaining: ${usage.tokensRemaining.toLocaleString()}`);
@@ -212,19 +212,19 @@ export class HashubVector {
 
   /**
    * Get detailed usage statistics with daily breakdown
-   * 
+   *
    * @param from - Start date (YYYY-MM-DD format, optional)
    * @param to - End date (YYYY-MM-DD format, optional)
    * @returns Promise<UsageResponse>
-   * 
+   *
    * @example
    * ```typescript
    * // Get last 7 days usage
    * const usage = await client.getDetailedUsage('2025-08-01', '2025-08-07');
-   * 
+   *
    * console.log(`Period: ${usage.period.from} to ${usage.period.to}`);
    * console.log(`Total tokens: ${usage.usage.tokensUsed}`);
-   * 
+   *
    * for (const day of usage.dailyUsage) {
    *   console.log(`${day.date}: ${day.tokensUsed} tokens, ${day.requestCount} requests`);
    * }
@@ -241,10 +241,10 @@ export class HashubVector {
 
   /**
    * OpenAI-compatible embedding endpoint
-   * 
+   *
    * @param request - OpenAI-style embedding request
    * @returns Promise<OpenAIEmbeddingResponse>
-   * 
+   *
    * @example
    * ```typescript
    * // Drop-in replacement for OpenAI
@@ -252,7 +252,7 @@ export class HashubVector {
    *   input: 'Your text here',
    *   model: 'e5_base'
    * });
-   * 
+   *
    * const embedding = response.data[0].embedding;
    * console.log(`Generated ${embedding.length}D embedding`);
    * ```
@@ -333,9 +333,10 @@ export class HashubVector {
         throw new QuotaExceededError(message);
       case 400:
         throw new ValidationError(message);
-      case 429:
+      case 429: {
         const retryAfter = error.response.headers['retry-after'];
         throw new RateLimitError(message, retryAfter ? parseInt(retryAfter) : undefined);
+      }
       case 500:
       case 502:
       case 503:
