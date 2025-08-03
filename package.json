@@ -49,11 +49,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hasanbahadir/hashub-vector-js-sdk.git"
+    "url": "https://github.com/hasanbahadir/hashub-vector-js.git"
   },
-  "homepage": "https://github.com/hasanbahadir/hashub-vector-js-sdk#readme",
+  "homepage": "https://github.com/hasanbahadir/hashub-vector-js#readme",
   "bugs": {
-    "url": "https://github.com/hasanbahadir/hashub-vector-js-sdk/issues"
+    "url": "https://github.com/hasanbahadir/hashub-vector-js/issues"
   },
   "engines": {
     "node": ">=16.0.0"
