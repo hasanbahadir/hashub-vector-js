@@ -1,0 +1,34 @@
+# Source files
+src/
+examples/
+tests/
+
+# Development files
+.eslintrc.json
+.prettierrc.json
+jest.config.json
+tsconfig.json
+rollup.config.js
+
+# Development dependencies
+node_modules/
+coverage/
+
+# Git files
+.git/
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment files
+.env*
+
+# Temporary files
+*.tmp
+*.temp
